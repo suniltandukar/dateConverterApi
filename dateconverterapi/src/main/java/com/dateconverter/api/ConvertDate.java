@@ -1,5 +1,7 @@
 package com.dateconverter.api;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +26,13 @@ public class ConvertDate {
 		
 		Converter converter = new Converter();
 		NepaliDate nepaliDate = converter.getNepaliDate(year, month, day);
-		String converteddate = nepaliDate.toString();
-		map.put("data", converteddate);
+		
+
+		 
+		SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = dformat.parse(nepaliDate.toString());
+		String formatteddate = dformat.format(date);		
+		map.put("data", formatteddate);
 		}
 		catch(Exception e) {
 			System.out.println(e);
@@ -48,8 +55,12 @@ public class ConvertDate {
 		
 		Converter converter = new Converter();
 		EnglishDate englishDate = converter.getEnglishDate(year, month, day);
-		String converteddate = englishDate.toString();
-		map.put("data", converteddate);
+		
+		SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = dformat.parse(englishDate.toString()); //conversion string to date
+		String formatteddate = dformat.format(date);		//formating date to req format
+		map.put("data", formatteddate);
+
 		}
 		catch(Exception e) {
 			System.out.println(e);
